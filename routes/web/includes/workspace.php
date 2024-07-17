@@ -119,6 +119,7 @@ Route::middleware(array_merge([
             Route::get('/', [MediaController::class, 'index'])->name('index');
             Route::delete('/', [MediaController::class, 'destroy'])->name('delete');
             Route::get('fetch/uploaded', MediaFetchUploadsController::class)->name('fetchUploads');
+            Route::get('fetch/media', [MediaFetchUploadsController::class,'media'])->name('fetchMedia');
             Route::get('fetch/stock', MediaFetchStockController::class)->name('fetchStock');
             Route::get('fetch/gifs', MediaFetchGifsController::class)->name('fetchGifs');
             Route::post('download', MediaDownloadExternalController::class)->name('download');

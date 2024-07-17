@@ -8,6 +8,7 @@ import PageHeader from '@/Components/DataDisplay/PageHeader.vue';
 import Tabs from "@/Components/Navigation/Tabs.vue"
 import Tab from "@/Components/Navigation/Tab.vue"
 import MediaUploads from "@/Components/Media/MediaUploads.vue";
+import Healthinomics from "@/Components/Media/Healthinomics.vue";
 import MediaStock from "@/Components/Media/MediaStock.vue";
 import MediaGifs from "@/Components/Media/MediaGifs.vue";
 import SelectableBar from "@/Components/DataDisplay/SelectableBar.vue";
@@ -34,7 +35,8 @@ const {
 const sources = {
     'uploads': MediaUploads,
     'stock': MediaStock,
-    'gifs': MediaGifs
+    'gifs': MediaGifs,
+    'healthinomics': Healthinomics
 };
 
 const sourceProperties = ref();

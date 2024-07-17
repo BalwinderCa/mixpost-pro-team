@@ -11,7 +11,7 @@ const useMedia = (routeName = 'mixpost.media.fetchUploads', routeParams = {}) =>
     const activeTab = ref('uploads');
 
     const tabs = computed(() => {
-        return ['uploads', 'stock', 'gifs'];
+        return ['uploads', 'stock', 'gifs','healthinomics'];
     })
 
     const isLoaded = ref(false);

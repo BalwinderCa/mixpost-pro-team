@@ -4,17 +4,21 @@ import vue from '@vitejs/plugin-vue';
 import DefineOptions from 'unplugin-vue-define-options/vite';
 
 export default defineConfig(({ command, mode }) => {
-    // Load current .env-file
+    // Load environment variables based on the mode
     const env = loadEnv(mode, process.cwd(), '');
 
     return {
         server: {
-            port: 3000, // Configure Vite to run on port 3000
+            port: env.VITE_PORT || 3000,
+            hmr: {
+                host: 'localhost',
+                port: env.VITE_HMR_PORT || 3000,
+            },
         },
         publicDir: 'vendor/mixpost',
         plugins: [
             laravel({
-                input: 'resources/js/app.js',
+                input: ['resources/js/app.js', 'resources/css/app.css'],
                 publicDirectory: 'resources/dist',
                 buildDirectory: 'vendor/mixpost',
                 refresh: true,
@@ -32,7 +36,19 @@ export default defineConfig(({ command, mode }) => {
         resolve: {
             alias: {
                 '@css': '/resources/css',
-                '@img': 'resources/img',
+                '@img': '/resources/img',
+                '@js': '/resources/js',
+            },
+        },
+        build: {
+            outDir: 'vendor/mixpost',
+            sourcemap: mode === 'development',
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        vue: ['vue'],
+                    },
+                },
             },
         },
     };

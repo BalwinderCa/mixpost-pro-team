@@ -350,6 +350,8 @@
     },
     "media": {
         "media_library": "Media Library",
+        "healthinomics": "Healthinomics",
+        "healthnomics_library": "Healthnomics Free Media Library",
         "uploads": "Upload",
         "stock": "Stock Photos",
         "gifs": "GIFs",
