@@ -43,10 +43,14 @@ export default defineConfig(({ command, mode }) => {
         build: {
             outDir: 'vendor/mixpost',
             sourcemap: mode === 'development',
+            chunkSizeWarningLimit: 1000,  // Adjust chunk size warning limit
             rollupOptions: {
                 output: {
-                    manualChunks: {
-                        vue: ['vue'],
+                    manualChunks(id) {
+                        if (id.includes('node_modules')) {
+                            // Split vendor modules into separate chunks
+                            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                        }
                     },
                 },
             },
