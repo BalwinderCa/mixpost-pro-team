@@ -20,9 +20,7 @@ class MediaFetchUploadsController extends Controller
 
     public function media(): AnonymousResourceCollection
     {
-        $records = Globals::where('workspace_id', 49)
-                    ->latest('created_at')
-                    ->simplePaginate(30);
+        $records = Globals::where('workspace_id', 5)->latest('created_at')->simplePaginate(30); //linked to hello@healthinomics.com account
         return MediaResource::collection($records);
     }
 }
