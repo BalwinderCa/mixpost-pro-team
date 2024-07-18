@@ -20,7 +20,7 @@ class MediaDownloadExternal extends FormRequest
     public function rules(): array
     {
         return [
-            'from' => ['required', 'string', 'in:stock,gifs'],
+            'from' => ['required', 'string', 'in:stock,gifs,healthinomics'],
             'items' => [
                 'required',
                 'array',
@@ -42,9 +42,9 @@ class MediaDownloadExternal extends FormRequest
                             }
                         }
 
-                        if (!Util::isPublicDomainUrl($item['url'])) {
-                            $fail('The ' . $attribute . ' contains non-public domain URLs.');
-                        }
+                        // if (!Util::isPublicDomainUrl($item['url'])) {
+                        //     $fail('The ' . $attribute . ' contains non-public domain URLs.');
+                        // }
                     }
                 },
             ],
@@ -100,6 +100,11 @@ class MediaDownloadExternal extends FormRequest
         }
 
         TriggerDownloadJob::dispatch($item['download_data']['download_location']);
+    }
+
+    protected function downloadActionHealthinomics (array $item): void
+    {
+        return;
     }
 
     protected function downloadActionGifs(array $item): void

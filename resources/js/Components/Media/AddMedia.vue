@@ -8,6 +8,7 @@ import Tab from "@/Components/Navigation/Tab.vue"
 import PrimaryButton from "@/Components/Button/PrimaryButton.vue";
 import SecondaryButton from "@/Components/Button/SecondaryButton.vue"
 import MediaUploads from "@/Components/Media/MediaUploads.vue";
+import Healthinomics from "@/Components/Media/Healthinomics.vue";
 import MediaStock from "@/Components/Media/MediaStock.vue";
 import MediaGifs from "@/Components/Media/MediaGifs.vue";
 import Preloader from "@/Components/Util/Preloader.vue"
@@ -43,7 +44,8 @@ const {
 const sources = {
     'uploads': MediaUploads,
     'stock': MediaStock,
-    'gifs': MediaGifs
+    'gifs': MediaGifs,
+    'healthinomics': Healthinomics
 };
 
 const sourceProperties = ref();
@@ -67,7 +69,7 @@ const close = () => {
 };
 
 const insert = () => {
-    const toDownload = activeTab.value !== 'uploads';
+    const toDownload = activeTab.value !== 'uploads' && activeTab.value !== 'healthinomics';
 
     if (toDownload) {
         // Download external media files

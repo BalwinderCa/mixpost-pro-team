@@ -33,7 +33,7 @@ abstract class PostFormRequest extends FormRequest
             'versions.*.content.*.body' => ['nullable', 'string'],
             'versions.*.content.*.url' => ['nullable', 'string'],
             'versions.*.content.*.media' => ['array'],
-            'versions.*.content.*.media.*' => ['integer', WorkspaceManager::existsRule('mixpost_media', 'id')],
+            'versions.*.content.*.media.*' => ['integer'],
             'versions.*.options' => ['sometimes', 'array'],
         ];
 

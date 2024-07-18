@@ -54,21 +54,38 @@ const deselectAll = () => {
 }
 
 const use = () => {
-    const toDownload = activeTab.value !== 'uploads';
+    const items = selectedItems.value;
 
-    if (toDownload) {
-        downloadExternal(selectedItems.value.map((item) => {
-            const {id, url, source, author, download_data} = item;
-            return {id, url, source, author, download_data};
-        }), (response) => {
+    if (activeTab.value === 'healthinomics') {
+        const dataToDownload = items.map((item) => ({
+            id: "everytime_same_id",
+            url: item.url,
+            source: "stock",
+            author: "developer",
+            download_data: item.url
+        }));
+
+        downloadExternal(dataToDownload, (response) => {
             createPost(response.data);
         });
-    }
+    } else if (activeTab.value !== 'uploads') {
+        const dataToDownload = items.map((item) => ({
+            id: item.id,
+            url: item.url,
+            source: item.source,
+            author: item.author,
+            download_data: item.download_data
+        }));
 
-    if (!toDownload) {
-        createPost(selectedItems.value);
+        downloadExternal(dataToDownload, (response) => {
+            createPost(response.data);
+        });
+    } else {
+        createPost(items);
     }
-}
+};
+
+
 
 const {versionObject} = usePostVersions();
 
